@@ -1,6 +1,6 @@
 {
   "name": "esri-fetch-utils",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Utility functions for interacting with ArcGIS Server and Portal/AGOL REST APIs",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
