@@ -1,3 +1,3 @@
-export const MyFunc = (name: string) => {
+export const MyFunc = (name: string): string => {
   return `Hello ${name}`;
 };
