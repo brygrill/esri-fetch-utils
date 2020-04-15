@@ -1,4 +1,4 @@
-import { portal, service, session, token } from '../index';
+import { portal, service, session } from '../index';
 
 test('portal', () => {
   expect(portal('util')).toBe('portal util');
@@ -9,9 +9,6 @@ test('service', () => {
 });
 
 test('session', () => {
-  expect(session('util')).toBe('session util');
-});
-
-test('token', () => {
-  expect(token('util')).toBe('token util');
+  expect(session.browserSession('util')).toBe('browserSession util');
+  expect(session.genToken('util')).toBe('genToken util');
 });
