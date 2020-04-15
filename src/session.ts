@@ -10,7 +10,13 @@ interface BrowserSessionResp {
   oAuthUrl: Function;
 }
 
-export const browserSession = ({
+/**
+ * Manage on OAuth Session in the browser
+ * https://developers.arcgis.com/rest/users-groups-and-items/authorize.htm
+ * @param config
+ * @returns object
+ */
+export const browser = ({
   clientId,
   redirectUri,
   portalUrl = 'https://www.arcgis.com',
