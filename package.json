@@ -1,6 +1,6 @@
 {
   "name": "esri-fetch-utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Utility functions for interacting with ArcGIS Server and Portal/AGOL REST APIs",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -40,10 +40,10 @@
     "format": "prettier --write src/**/*.ts",
     "test": "jest --config jestconfig.json",
     "lint": "tsc --noEmit && eslint src/**/*.ts",
-    "prepare" : "npm run build",
-    "prepublishOnly" : "npm test && npm run lint",
-    "preversion" : "npm run lint",
-    "version" : "npm run format && git add -A src",
-    "postversion" : "git push && git push --tags"
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   }
 }
