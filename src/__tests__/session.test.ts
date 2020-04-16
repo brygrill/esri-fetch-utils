@@ -16,9 +16,9 @@ const customConfig = {
 test('session - browser - defaults', () => {
   const createSession = session.browser(defaultConfig);
 
-  const oAuthUrl_1 = createSession.oAuthUrl();
+  const oAuthUrl = createSession.oAuthUrl();
 
-  expect(oAuthUrl_1).toBe(
+  expect(oAuthUrl).toBe(
     'https://www.arcgis.com/sharing/rest/oauth2/authorize?client_id=1234&response_type=token&expiration=20160&redirect_uri=http://localhost:3000/auth&state=',
   );
 });
