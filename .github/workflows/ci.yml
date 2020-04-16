@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        node_version: [10, 12]
+        node_version: [12]
 
     steps:
       - uses: actions/checkout@v1
@@ -19,7 +19,7 @@ jobs:
 
       - name: run CI
         run: |
-          npm run install
+          npm install
           npm run lint
           npm run test
           npm run build
