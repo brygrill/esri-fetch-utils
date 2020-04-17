@@ -1,4 +1,4 @@
-import { session } from '../index';
+import { session as browserSession } from '../index';
 
 const defaultConfig = {
   clientId: '1234',
@@ -14,19 +14,23 @@ const customConfig = {
 };
 
 test('session - browser - defaults', () => {
-  const createSession = session.browser(defaultConfig);
-
-  const oAuthUrl = createSession.oAuthUrl();
-
+  const session = browserSession.create(defaultConfig);
+  console.log(session);
+  const user = session.user();
+  if (!user) {
+    console.log('show login');
+  }
+  const oAuthUrl = session.oAuthUrl();
+  console.log(user);
   expect(oAuthUrl).toBe(
     'https://www.arcgis.com/sharing/rest/oauth2/authorize?client_id=1234&response_type=token&expiration=20160&redirect_uri=http://localhost:3000/auth&state=',
   );
 });
 
 test('session - browser - custom', () => {
-  const createSession = session.browser(customConfig);
+  const session = browserSession.create(customConfig);
 
-  const oAuthUrl = createSession.oAuthUrl();
+  const oAuthUrl = session.oAuthUrl();
 
   expect(oAuthUrl).toBe(
     'http://myportal.com/sharing/rest/oauth2/authorize?client_id=1234&response_type=token&expiration=1000&redirect_uri=http://localhost:3000/auth&state=mystate=9876',
