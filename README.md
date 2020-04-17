@@ -1,5 +1,7 @@
 # esri-fetch-utils
 
+## Work In Progress
+
 Utility functions for interacting with ArcGIS Server and Portal/AGOL REST APIs
 
 ![CI](https://github.com/brygrill/esri-fetch-utils/workflows/CI/badge.svg)
