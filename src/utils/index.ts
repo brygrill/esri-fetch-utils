@@ -2,7 +2,10 @@ import * as moment from 'moment';
 import * as qs from 'qs';
 import * as _ from 'lodash';
 
-// pull hash off url after redirect
+/**
+ * pull hash off url after redirect
+ * @returns object
+ */
 export const parseHash = (): {
   token: string | null;
   username: string | null;
@@ -20,13 +23,22 @@ export const parseHash = (): {
   }
 };
 
-// logic taken from esri-rest-auth UserSession.js:
-// new Date(Date.now() - parseInt(expiresIn, 10) * 1000 - 60 * 1000)
+/**
+ * converts expires in number to new Moment
+ * logic taken from esri-rest-auth UserSession.js:
+ * new Date(Date.now() - parseInt(expiresIn, 10) * 1000 - 60 * 1000)
+ * @param expiresIn number
+ * @returns Moment object
+ */
 export const setTokenExpiration = (expiresIn: number): moment.Moment => {
   return moment().add(expiresIn, 'seconds').subtract(60, 'seconds');
 };
 
-// returns true if current time is after expire date
+/**
+ * if current time is after expire date
+ * @param expires Date
+ * @returns boolean
+ */
 export const tokenExpired = (expires: Date): boolean => {
   return moment().isAfter(expires);
 };
