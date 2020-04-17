@@ -1,4 +1,4 @@
-import { get, set, rm } from './utils';
+import { parseHash, setTokenExpiration, tokenExpired } from './utils';
 
 interface BrowserSessionArg {
   clientId: string;
@@ -9,17 +9,13 @@ interface BrowserSessionArg {
 }
 
 interface BrowserSessionResp {
-  key: string;
-  user: Function;
   oAuthUrl: Function;
   onRedirect: Function;
   tokenExpired: Function;
-  clearSession: Function;
 }
 
 /**
  * Manage an Esri OAuth session in the browser
- * https://developers.arcgis.com/rest/users-groups-and-items/authorize.htm
  * @param config
  * @returns object with methods for managing session
  */
@@ -31,30 +27,21 @@ export const create = ({
   state = '',
 }: BrowserSessionArg): BrowserSessionResp => {
   return {
-    key: '__ARCGIS_REST_USER_SESSION__',
-    user(): object | null {
-      return get(this.key);
-    },
     oAuthUrl(): string {
       return `${portalUrl}/sharing/rest/oauth2/authorize?client_id=${clientId}&response_type=token&expiration=${tokenDuration}&redirect_uri=${redirectUri}&state=${state}`;
     },
-    onRedirect(): boolean {
-      set(this.key, {
+    onRedirect(): object {
+      const { token, username, expiresIn } = parseHash();
+      return {
         clientId,
         portalUrl,
-        token: 'access_token',
+        token,
         tokenDuration,
-        tokenExpires: 'setTokenExpiration(expires_in)',
-        username: 'username',
-      });
-      return true;
+        tokenExpires: expiresIn ? setTokenExpiration(expiresIn) : null,
+        username,
+      };
     },
-    tokenExpired(): boolean {
-      return true;
-    },
-    clearSession(): void {
-      rm(this.key);
-    },
+    tokenExpired,
   };
 };
 
