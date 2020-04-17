@@ -10,6 +10,7 @@ export const parseHash = (): {
   token: string | null;
   username: string | null;
   expiresIn: number | null;
+  state: string | null;
 } => {
   try {
     const hash = qs.parse(window.location.hash.slice(1));
@@ -17,9 +18,10 @@ export const parseHash = (): {
       token: _.get(hash, 'access_token', null),
       username: _.get(hash, 'username', null),
       expiresIn: _.get(hash, 'expires_in', null),
+      state: _.get(hash, 'state', null),
     };
   } catch (error) {
-    return { token: null, username: null, expiresIn: null };
+    return { token: null, username: null, expiresIn: null, state: null };
   }
 };
 
