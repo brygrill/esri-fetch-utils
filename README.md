@@ -37,23 +37,25 @@ const session = browserSession.create(config);
 
 // generate url to direct user to agol/portal login
 const oAuthUrl = session.oAuthUrl();
+console.log(oAuthUrl);
+// https://www.arcgis.com/sharing/rest/oauth2/authorize?client_id=1234&response_type=token...
 
 // parse hash when user redirected back to your app on successful login
-// user will be object like:
-const expectedUser = {
-  username: 'grill',
-  portalUrl: 'https://www.arcgis.com',
-  clientId: '1234',
-  token: '2YotnFZFEjr1zCsicMWpAA',
-  tokenDuration: 20160,
-  tokenExpires: moment('2020-04-17T13:54:30.248'),
-  state: 'qyxmpg9e5uWUPbxw',
-};
 const user = session.onRedirect();
+console.log(user);
+// {
+//   username: 'grill',
+//   portalUrl: 'https://www.arcgis.com',
+//   clientId: '1234',
+//   token: '2YotnFZFEjr1zCsicMWpAA',
+//   tokenDuration: 20160,
+//   tokenExpires: moment('2020-04-17T13:54:30.248'),
+//   state: 'qyxmpg9e5uWUPbxw',
+// };
 
 // check is token is expired - will return true if expired
 const expired = session.tokenExpired(moment('2020-04-17T13:54:30.248'));
-// console.log(expired)
+console.log(expired);
 // true
 ```
 
