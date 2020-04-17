@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 import { session as browserSession } from '../index';
 
 const defaultConfig = {
@@ -36,8 +37,8 @@ test('session - browser - defaults', () => {
     'https://www.arcgis.com/sharing/rest/oauth2/authorize?client_id=1234&response_type=token&expiration=20160&redirect_uri=http://localhost:3000/auth&state=',
   );
 
-  const expires = session.tokenExpired(20160);
-  expect(expires).toBe(true);
+  const expired = session.tokenExpired(moment('2020-04-17T13:54:30.248'));
+  expect(expired).toBe(true);
 
   const user = session.onRedirect();
   expect(user).toMatchObject(expectedUser);
