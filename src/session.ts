@@ -49,6 +49,7 @@ export const create = ({
       return `${portalUrl}/sharing/rest/oauth2/authorize?client_id=${clientId}&response_type=token&expiration=${tokenDuration}&redirect_uri=${redirectUri}&state=${state}`;
     },
     onRedirect(): User {
+      // TODO: optionally enrich user object with call to user endpoint
       const { token, username, expiresIn, state } = parseHash();
       return {
         clientId,
